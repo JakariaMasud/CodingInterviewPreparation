@@ -23,6 +23,17 @@ public class ProblemSolver {
         return sb.toString();
     }
 
+    int reverseNumber(int num){
+        String reverse = "";
+        while (num != 0){
+            int digit = num % 10;
+            reverse = reverse + digit;
+            num=num/10;
+
+        }
+        return Integer.parseInt(reverse);
+    }
+
     void swapTwoNumberWithoutUsingThirdVariable(int a, int b) {
         System.out.println("before swapping: a = " + a + ", b = " + b);
         a = a + b;
@@ -101,5 +112,50 @@ public class ProblemSolver {
         }
         if(sum==originalNumber) return true;
         return false;
+    }
+
+    int greatestCommonDivisor(int a, int b) {
+        int rem;
+        do{
+            rem=a%b;
+            a=b;
+            if(rem!=0) b=rem;
+        }while (rem!=0);
+        return b;
+    }
+
+    Boolean isPerfectNumber(int n){
+        int sum=0;
+        for(int i=1;i<=n/2;i++){
+            if(n%i==0){
+                sum=sum+i;
+            }
+        }
+        if(sum==n) return true;
+        return false;
+    }
+
+    Boolean isAnagram(String s, String t) {
+        char[] chars = s.toLowerCase().toCharArray();
+        char[] charsT = t.toLowerCase().toCharArray();
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+        if(chars.length!=charsT.length) return false;
+        for (int i = 0; i < chars.length; i++) {
+            if(frequencyMap.containsKey(chars[i])){
+                frequencyMap.put(chars[i], frequencyMap.get(chars[i])+1);
+            }
+            frequencyMap.put(chars[i],1);
+        }
+        for (int j = 0; j < charsT.length; j++) {
+            if(!frequencyMap.containsKey(charsT[j])){
+                return false;
+            }
+            if(frequencyMap.get(charsT[j])==1){
+                frequencyMap.remove(charsT[j]);
+            }else {
+                frequencyMap.put(charsT[j],frequencyMap.get(charsT[j])-1);
+            }
+        }
+        return frequencyMap.isEmpty();
     }
 }
