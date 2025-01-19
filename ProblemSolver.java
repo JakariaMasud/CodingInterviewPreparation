@@ -158,4 +158,36 @@ public class ProblemSolver {
         }
         return frequencyMap.isEmpty();
     }
+
+    Integer convertDecimalToBinary(int n) {
+        StringBuilder sb = new StringBuilder();
+        while (n > 0) {
+            int quotient = n/2;
+            int remainder = n%2;
+            sb.append(remainder);
+            n=quotient;
+
+        }
+        return Integer.parseInt(sb.reverse().toString());
+
+    }
+
+    Integer fibonacciRecursive(int n) {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        return fibonacciRecursive(n-1) + fibonacciRecursive(n-2);
+    }
+
+    Integer fibonacciIterative(int n) {
+       if (n == 0) return 0;
+       if (n == 1) return 1;
+       int x=0,y=1;
+       for(int i=2;i<=n;i++){
+          int  temp= y;
+          y= x+y;
+          x=temp;
+       }
+       return y;
+
+    }
 }
